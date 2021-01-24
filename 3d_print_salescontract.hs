@@ -1,0 +1,38 @@
+When
+    [Case
+        (Deposit
+            (Role "buyer")
+            (Role "buyer")
+            (Token "" "")
+            (Constant 100)
+        )
+        (When
+            [Case
+                (Choice
+                    (ChoiceId
+                        "buy"
+                        (Role "buyer")
+                    )
+                    [Bound 1 1]
+                )
+                (If
+                    (ValueEQ
+                        (ChoiceValue
+                            (ChoiceId
+                                "buy"
+                                (Role "buyer")
+                            ))
+                        (Constant 1)
+                    )
+                    (Pay
+                        (Role "buyer")
+                        (Party (Role "seller"))
+                        (Token "" "")
+                        (Constant 100)
+                        Close 
+                    )
+                    Close 
+                )]
+            2 Close 
+        )]
+    1 Close 
